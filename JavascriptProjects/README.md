@@ -3,7 +3,7 @@
 <p>~Merry Canvas Data Program~
 "Load the data provided in the folder and you will be presented with a standard line graph."</p>
 
-<p>Ty's Spell Check~
+<p>~Ty's Spell Check~
 "Type in a word to see if you spelled it correctly."</p>
 
 <p>~Carrier's Game of Life~
