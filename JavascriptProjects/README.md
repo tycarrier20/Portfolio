@@ -1,7 +1,7 @@
 ## Javascript Project Descriptions
 
-<p>~Merry Canvas Data Program~</p>
-"Load the data provided in the folder and you will be presented with a standard line graph."
+<p>~Merry Canvas Data Program~
+"Load the data provided in the folder and you will be presented with a standard line graph."</p>
 
 ~Ty's Spell Check~
 "Type in a word to see if you spelled it correctly."
