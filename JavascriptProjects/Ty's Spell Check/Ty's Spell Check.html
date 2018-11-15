@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta name="author" content="Tyler Carrier" />
+<meta charset="utf-8" />
+<script src="wordlist.js"></script>
+<script>
+function spellCheck() {
+var ta1 = document.getElementById("textArea1").value;
+var result = ta1.split (" ");
+var array = result.length;
+	for (var wordCounter=0; wordCounter<result.length; wordCounter++) {
+		if (wordlist.indexOf (result [wordCounter].toUpperCase().trim().replace(/[.?]/g, "")) == -1)
+			alert (result [wordCounter] + " is not spelled correctly.");
+		if (wordlist.indexOf (result [wordCounter].toUpperCase().trim().replace(/[.?]/g, "")) !== -1)
+			alert (result [wordCounter] + " is spelled correctly!");
+		}
+}
+</script>
+</head>
+<style>
+.textArea {   
+    border: 2;
+    color: purple;   
+	text-align: center;
+}
+.button {  
+    width: px;
+    height: 60px;   
+    background: purple;
+    border: 2;
+    color: pink;   
+    font-size:14px;
+    font-weight:700;
+	position: absolute;
+    top: 70%;
+}
+.wrapper1 {
+text-align: center;
+}
+.wrapper2 {
+text-align: center;
+}
+</style>
+<body style="background-color: pink">
+<div class="wrapper1">
+<h1 style="color: purple;">Spell Check:</h1>
+</div>
+<div class="textArea">
+<textarea style="background-color: violet;" id="textArea1" rows="20" cols="50"></textarea> <br />
+<br />
+</div>
+<div class="wrapper2">
+<button class="button" onClick="spellCheck()";>Check</button>
+</div>
+</body>
+</html>
+
