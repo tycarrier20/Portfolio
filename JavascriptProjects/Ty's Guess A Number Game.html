@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="author" content="Tyler Carrier" />
+<title>Ty's Number Guessing Game</title>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<style>
+.toggler { width: 500px; height: 200px; }
+#button { padding: .5em 1em; text-decoration: none; }
+#effect { width: 240px; height: 170px; padding: 0.4em; position: relative; }
+#effect h3 { margin: 0; padding: 0.4em; text-align: center; }
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script type="text/javascript">
+const min = 1;
+const max = 100;
+var g;
+var randomNumber;
+// This function will compare the user's guessed number with
+// the generated random number. It will then notify the user 
+// whether their guess is too high, too low, or correct
+function onClickGuess() {
+	var tb1val = g.value;
+	if (tb1val < randomNumber) alert("Too Low!");
+	if (tb1val > randomNumber) alert("Too High!");
+	if (tb1val == randomNumber) {alert("Correct!!");addNumberToDropdown();}
+}	
+// This function will generate a new random number and thus
+// aid the process of starting a new game for the user
+function pickANewNumber() {
+	randomNumber =
+	Math.floor(Math.random() *
+	(max - min + 1)) + min;
+}
+// This function aids in allowing the user to add the correctly
+// guessed number to the a dropdown list
+function addToList(listId,numberToAdd) {
+	var dropdownElement = document.getElementById(listId);
+	var dropdownOptions = dropdownElement.options;
+	for (var optionNumber=0;optionNumber<dropdownOptions.length;optionNumber++) {
+		if (dropdownOptions[optionNumber].text==numberToAdd) return;
+	}
+	var newOption = document.createElement("option");
+	newOption.text=numberToAdd;
+	newOption.value=numberToAdd;
+	dropdownElement.add(newOption);
+}
+// This function aids in allowing the user to add the correctly
+// guessed number to the a dropdown list
+function addNumberToDropdown() {
+	var numberToAdd = document.getElementById("textBox1").value;
+	addToList ("addNumberToDropdown",numberToAdd);
+}
+// This function aids in starting a new game by setting the "textBox1"
+// to "0"
+function onClickReset() {
+	document.getElementById("textBox1").value="0";
+}	
+// This function calls upon two functions that will reset the "textBox1"
+// value and pick a new random number, thus allowing the user to begin
+// a new game
+function newGame() {
+	onClickReset();
+	pickANewNumber();
+}
+// This function generates a random number
+function main() {
+	randomNumber =
+	Math.floor(Math.random() *
+	(max - min + 1)) + min;
+	g = document.getElementById("textBox1");
+}
+$( function() {
+    // run the currently selected effect
+    function runEffect() {
+      // get effect type from
+      var selectedEffect = $( "#effectTypes" ).val();
+ 
+      // Most effect types need no options passed by default
+      var options = {};
+      // some effects have required parameters
+      if ( selectedEffect === "scale" ) {
+        options = { percent: 50 };
+      } else if ( selectedEffect === "size" ) {
+        options = { to: { width: 200, height: 60 } };
+      }
+ 
+      // Run the effect
+      $( "#effect" ).hide( selectedEffect, options, 1000, callback );
+    };
+ 
+    // Callback function to bring a hidden box back
+    function callback() {
+      setTimeout(function() {
+        $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+      }, 1000 );
+    };
+ 
+    // Set effect from select menu value
+    $( "#button" ).on( "click", function() {
+      runEffect();
+    });
+  } );
+</script>
+</head>
+<body style="background-color: pink" onLoad="main();">
+<h2>~~~Ty's Number Guessing Game~~~</h2>
+<div class="toggler">
+  <div id="effect" class="ui-widget-content ui-corner-all">
+    <h3 class="ui-widget-header ui-corner-all">~PLAY~</h3>
+   <p>Type a number from 1 to 100 into the value box below. Click "Make A Guess!", and you will be notified as to whether your guess is too high or too low. Use the hints to guess the correct number.</p>
+  </div>
+</div>
+<select name="effects" id="effectTypes">
+  <option value="blind">Blind</option>
+  <option value="bounce">Bounce</option>
+  <option value="clip">Clip</option>
+  <option value="drop">Drop</option>
+  <option value="explode">Explode</option>
+  <option value="fade">Fade</option>
+  <option value="fold">Fold</option>
+  <option value="highlight">Highlight</option>
+  <option value="puff">Puff</option>
+  <option value="pulsate">Pulsate</option>
+  <option value="scale">Scale</option>
+  <option value="shake">Shake</option>
+  <option value="size">Size</option>
+  <option value="slide">Slide</option>
+</select>
+<button id="button" class="ui-state-default ui-corner-all">Run Effect</button> 
+<br />
+<br />
+<input placeholder="0" type="text" id="textBox1" />
+<button onClick="onClickGuess()";>Make A Guess!</button><br />
+<br />
+<label>Previous Random Numbers: </label>
+<select id="addNumberToDropdown"></select><br />
+<br /> 	
+<button onClick="newGame()";>Play A New Game</button>
+<h2>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</h2>
+</body>
+</html>
