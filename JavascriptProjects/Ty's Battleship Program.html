@@ -1,0 +1,548 @@
+<!doctype html>
+<html>
+<head>
+<meta name="author" content="Tyler Carrer" />
+<meta charset="utf-8" />
+<title>Ty's Battleship Program</title>
+<script type="text/javascript">
+var npcBoard = document.getElementById ("tab1");
+var shipCounter1 = 0;
+//the following two main functions make the player and computer board start out with white cells
+function main1() {
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"c");
+		tdID.style="background-color: white;";
+	}
+}
+function main2() {
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+		tdID.style="background-color: white;";
+	}
+}
+//this function shows the user what ship they hit
+function playerMove() {
+var playerInput = document.getElementById ("input1").value;
+var playerGuess = document.getElementById (playerInput+"c");
+if (playerGuess.getAttribute("data-value")=="1") playerGuess.style="background-color: green;";
+if (playerGuess.getAttribute("data-value")=="0") playerGuess.style="background-color: red;";
+if (playerGuess.getAttribute("data-value")=="1") alert("Hit!");
+if (playerGuess.getAttribute("data-value")=="0") alert ("Miss!");
+}
+//this function shows the user what ship the computer hit
+function npcMove(){
+var rowGuess = Math.floor(Math.random()*10);
+var colGuess = Math.floor(Math.random()*10);
+var npcGuess = document.getElementById(String.fromCharCode(rowGuess+97)+(colGuess+1).toString()+"h");
+if (npcGuess.getAttribute("data-value")=="1") npcGuess.style="background-color: green;";
+if (npcGuess.getAttribute("data-value")=="0") npcGuess.style="background-color: red;";
+if (npcGuess.getAttribute("data-value")=="1") alert ("Computer hit your ship!");
+if (npcGuess.getAttribute("data-value")=="0") alert ("Computer missed your ship");
+}
+//this function tells the computer when to alert that the player has won
+// and then resets the board
+function gameOverWin(){
+var playerGuess = document.getElementById ("input1").value;
+if (playerGuess == ("a2")) shipCounter1++;
+if (playerGuess == ("a3")) shipCounter1++;
+if (playerGuess == ("a4")) shipCounter1++;
+if (playerGuess == ("a5")) shipCounter1++;
+if (playerGuess == ("a6")) shipCounter1++;
+if (playerGuess == ("c2")) shipCounter1++;
+if (playerGuess == ("d2")) shipCounter1++;
+if (playerGuess == ("e2")) shipCounter1++;
+if (playerGuess == ("c9")) shipCounter1++;
+if (playerGuess == ("d9")) shipCounter1++;
+if (playerGuess == ("e9")) shipCounter1++;
+if (playerGuess == ("f9")) shipCounter1++;
+if (playerGuess == ("g2")) shipCounter1++;
+if (playerGuess == ("g3")) shipCounter1++;
+if (playerGuess == ("g4")) shipCounter1++;
+if (playerGuess == ("h8")) shipCounter1++;
+if (playerGuess == ("h9")) shipCounter1++;
+if (shipCounter1 == 17) (alert ("Congratulations, you have won!"));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID1 = document.getElementById(String.fromCharCode(row+97) +col+"c");
+		if (shipCounter1 == 17) tdID1.style="background-color: white;";
+	}
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID2 = document.getElementById(String.fromCharCode(row+97) +col+"h");
+		if (shipCounter1 == 17) tdID2.style="background-color: white;";
+		if (shipCounter1 == 17) tdID2.setAttribute("data-value", "0");
+		}
+/*if (playerGuess.style="background-color: green;"){
+		(alert("You have already chosen this position"));
+		}*/
+return shipCounter1;
+}
+//this function tells the computer when to alert that the player has lost
+// and then resets the board
+function gameOverLoss(){
+var npcGuess = document.getElementById(String.fromCharCode(rowGuess+97)+(colGuess+1).toString()+"h");
+if (npcGuess.getAttribute("data-value")=="1")  shipCounter2++;
+if (shipCounter2 == 17) (alert ("All of your ships have been sunk. You have lost the battle!"));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID1 = document.getElementById(String.fromCharCode(row+97) +col+"c");
+		if (shipCounter2 == 17) tdID1.style="background-color: white;";
+	}
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID2 = document.getElementById(String.fromCharCode(row+97) +col+"h");
+		if (shipCounter2 == 17) tdID2.style="background-color: white;";
+		if (shipCounter2 == 17) tdID2.setAttribute("data-value", "0");
+	}
+return shipCounter2;
+}
+//this function places the ships onto the board
+function placeShips(){
+//direction for ac
+var acPos = document.getElementById("acPos").value.toLowerCase();
+var acStartingRow = acPos.charCodeAt(0)-97;
+var acStartingColumn = Number(acPos.substring(1));
+var acDirection = document.getElementById("acDir");
+acDirection = acDirection.options[acDirection.selectedIndex].value;
+if (acDirection=="across" && acStartingColumn>6) {
+  alert("Your aircraft carrier is running off the board.  Try again.");
+  return;
+}
+if (acDirection=="downward" && acStartingRow>5) {
+  alert("Your aircraft carrier is running off the board.  Try again.");
+  return;
+}
+for (var counter=0;counter<5;counter++) {
+  var tdID;
+  if (acDirection=="across") {
+    tdID = String.fromCharCode(acStartingRow+97)+(acStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(acStartingRow+counter+97)+(acStartingColumn).toString()+"h";
+  }
+if (document.getElementById(tdID).getAttribute("data-value")==1){
+  (alert("Some of your ships are overlapping. Please place ships again."));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+  tdID.setAttribute("data-value", "0")
+  tdID.style="background-color: white;";
+  }
+return;  
+ }
+}
+for (var counter=0;counter<5;counter++) {
+  var tdID;
+  if (acDirection=="across") {
+    tdID = String.fromCharCode(acStartingRow+97)+(acStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(acStartingRow+counter+97)+(acStartingColumn).toString()+"h";
+  }
+  document.getElementById(tdID).setAttribute("data-value","1");
+}
+//direction for b
+var bPos = document.getElementById("bPos").value.toLowerCase();
+var bStartingRow = bPos.charCodeAt(0)-97;
+var bStartingColumn = Number(bPos.substring(1));
+var bDirection = document.getElementById("bDir");
+bDirection = bDirection.options[bDirection.selectedIndex].value;
+if (bDirection=="across" && bStartingColumn>7) {
+  alert("Your battleship is running off the board.  Try again.");
+  return;
+}
+if (bDirection=="downward" && bStartingRow>6) {
+  alert("Your battleship is running off the board.  Try again.");
+  return;
+}
+for (var counter=0;counter<4;counter++) {
+  var tdID;
+  if (bDirection=="across") {
+    tdID = String.fromCharCode(bStartingRow+97)+(bStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(bStartingRow+counter+97)+(bStartingColumn).toString()+"h";
+  }
+if (document.getElementById(tdID).getAttribute("data-value")==1){
+  (alert("Some of your ships are overlapping. Please place ships again."));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+  tdID.setAttribute("data-value", "0")
+  tdID.style="background-color: white;";
+  }
+return;  
+ }
+}
+for (var counter=0;counter<4;counter++) {
+  var tdID;
+  if (bDirection=="across") {
+    tdID = String.fromCharCode(bStartingRow+97)+(bStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(bStartingRow+counter+97)+(bStartingColumn).toString()+"h";
+  }
+  document.getElementById(tdID).setAttribute("data-value","1");
+}
+//direction for s
+var sPos = document.getElementById("sPos").value.toLowerCase();
+var sStartingRow = sPos.charCodeAt(0)-97;
+var sStartingColumn = Number(sPos.substring(1));
+var sDirection = document.getElementById("sDir");
+sDirection = sDirection.options[sDirection.selectedIndex].value;
+if (sDirection=="across" && sStartingColumn>8) {
+  alert("Your submarine is running off the board.  Try again.");
+  return;
+}
+if (sDirection=="downward" && sStartingRow>7) {
+  alert("Your submarine is running off the board.  Try again.");
+  return;
+}
+for (var counter=0;counter<3;counter++) {
+  var tdID;
+  if (sDirection=="across") {
+    tdID = String.fromCharCode(sStartingRow+97)+(sStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(sStartingRow+counter+97)+(sStartingColumn).toString()+"h";
+  }
+if (document.getElementById(tdID).getAttribute("data-value")==1){
+  (alert("Some of your ships are overlapping. Please place ships again."));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+  tdID.setAttribute("data-value", "0")
+  tdID.style="background-color: white;";
+  }
+return;  
+ }
+}
+for (var counter=0;counter<3;counter++) {
+  var tdID;
+  if (sDirection=="across") {
+    tdID = String.fromCharCode(sStartingRow+97)+(sStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(sStartingRow+counter+97)+(sStartingColumn).toString()+"h";
+  }
+  document.getElementById(tdID).setAttribute("data-value","1");
+}
+//direction for c
+var cPos = document.getElementById("cPos").value.toLowerCase();
+var cStartingRow = cPos.charCodeAt(0)-97;
+var cStartingColumn = Number(cPos.substring(1));
+var cDirection = document.getElementById("cDir");
+cDirection = cDirection.options[cDirection.selectedIndex].value;
+if (cDirection=="across" && cStartingColumn>8) {
+  alert("Your cruiser is running off the board.  Try again.");
+  return;
+}
+if (cDirection=="downward" && cStartingRow>7) {
+  alert("Your cruiser is running off the board.  Try again.");
+  return;
+}
+for (var counter=0;counter<3;counter++) {
+  var tdID;
+  if (cDirection=="across") {
+    tdID = String.fromCharCode(cStartingRow+97)+(cStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(cStartingRow+counter+97)+(cStartingColumn).toString()+"h";
+  }
+if (document.getElementById(tdID).getAttribute("data-value")==1){
+  (alert("Some of your ships are overlapping. Please place ships again."));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+  tdID.setAttribute("data-value", "0")
+  tdID.style="background-color: white;";
+  }
+return;  
+ }
+}
+for (var counter=0;counter<3;counter++) {
+  var tdID;
+  if (cDirection=="across") {
+    tdID = String.fromCharCode(cStartingRow+97)+(cStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(cStartingRow+counter+97)+(cStartingColumn).toString()+"h";
+  }
+  document.getElementById(tdID).setAttribute("data-value","1");
+}
+//direction for d
+var dPos = document.getElementById("dPos").value.toLowerCase();
+var dStartingRow = dPos.charCodeAt(0)-97;
+var dStartingColumn = Number(dPos.substring(1));
+var dDirection = document.getElementById("dDir");
+dDirection = dDirection.options[dDirection.selectedIndex].value;
+if (dDirection=="across" && dStartingColumn>9) {
+  alert("Your aircraft carrier is running off the board.  Try again.");
+  return;
+}
+if (dDirection=="downward" && dStartingRow>8) {
+  alert("Your aircraft carrier is running off the board.  Try again.");
+  return;
+}
+for (var counter=0;counter<2;counter++) {
+  var tdID;
+  if (dDirection=="across") {
+    tdID = String.fromCharCode(dStartingRow+97)+(dStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(dStartingRow+counter+97)+(dStartingColumn).toString()+"h";
+  }
+if (document.getElementById(tdID).getAttribute("data-value")==1){
+  (alert("Some of your ships are overlapping. Please place ships again."));
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+  tdID.setAttribute("data-value", "0")
+  tdID.style="background-color: white;";
+  }
+return;  
+ }
+}
+for (var counter=0;counter<2;counter++) {
+  var tdID;
+  if (dDirection=="across") {
+    tdID = String.fromCharCode(dStartingRow+97)+(dStartingColumn+counter).toString()+"h";
+  } else {
+    tdID = String.fromCharCode(dStartingRow+counter+97)+(dStartingColumn).toString()+"h";
+  }
+  document.getElementById(tdID).setAttribute("data-value","1");
+}
+for (var row=0 ; row<10 ; row++)
+	for (var col=1 ; col<=10 ; col++) {
+		var tdID = document.getElementById(String.fromCharCode(row+97) +col+"h");
+		if (tdID.getAttribute("data-value")==1){
+		tdID.style="background-color: grey;";
+		}
+}
+(alert("You have placed your ships. Now, choose a position to fire at the enemy!"));
+}
+
+</script>
+</head>
+<style>
+body {
+text-align: center;
+background: url(https://i.ytimg.com/vi/fl5FrtGmx8k/maxresdefault.jpg) no-repeat;
+}
+td {
+height: 20px;
+width: 30px;
+border: solid brown;
+}
+</style>
+<body onLoad="main1(); main2()">
+<h1 font= "Helvetica" style="color: red;" align="center">Ty's Battleship Game</h1>
+<p align="center">Try to sink the battleships!</p>
+<b>NPC Board:</b>
+<table id= tab1 border="1" align="center">
+<tr id="RowH">
+<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+<th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+</tr>
+<tr id="Row0" class="DataRowEven">
+<th>&nbsp a &nbsp </th>
+<td id="a1c" data-value="0">&emsp;</td><td id="a2c" data-value="1">&emsp;</td>
+<td id="a3c" data-value="1">&emsp;</td><td id="a4c" data-value="1">&emsp;</td>
+<td id="a5c" data-value="1">&emsp;</td><td id="a6c" data-value="1">&emsp;</td>
+<td id="a7c" data-value="0">&emsp;</td><td id="a8c" data-value="0">&emsp;</td>
+<td id="a9c" data-value="0">&emsp;</td><td id="a10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row1" class="DataRowOddc" data-value="0">
+<th>&nbsp b &nbsp </th>
+<td id="b1c" data-value="0">&emsp;</td><td id="b2c" data-value="0">&emsp;</td>
+<td id="b3c" data-value="0">&emsp;</td><td id="b4c" data-value="0">&emsp;</td>
+<td id="b5c" data-value="0">&emsp;</td><td id="b6c" data-value="0">&emsp;</td>
+<td id="b7c" data-value="0">&emsp;</td><td id="b8c" data-value="0">&emsp;</td>
+<td id="b9c" data-value="0">&emsp;</td><td id="b10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row2" class="DataRowEvenc" data-value="0">
+<th>&nbsp c &nbsp </th>
+<td id="c1c" data-value="0">&emsp;</td><td id="c2c" data-value="1">&emsp;</td>
+<td id="c3c" data-value="0">&emsp;</td><td id="c4c" data-value="0">&emsp;</td>
+<td id="c5c" data-value="0">&emsp;</td><td id="c6c" data-value="0">&emsp;</td>
+<td id="c7c" data-value="0">&emsp;</td><td id="c8c" data-value="0">&emsp;</td>
+<td id="c9c" data-value="1">&emsp;</td><td id="c10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row3" class="DataRowOddc" data-value="0">
+<th>&nbsp d &nbsp </th>
+<td id="d1c" data-value="0">&emsp;</td><td id="d2c" data-value="1">&emsp;</td>
+<td id="d3c" data-value="0">&emsp;</td><td id="d4c" data-value="0">&emsp;</td>
+<td id="d5c" data-value="0">&emsp;</td><td id="d6c" data-value="0">&emsp;</td>
+<td id="d7c" data-value="0">&emsp;</td><td id="d8c" data-value="0">&emsp;</td>
+<td id="d9c" data-value="1">&emsp;</td><td id="d10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row4" class="DataRowEvenc" data-value="0">
+<th>&nbsp e &nbsp </th>
+<td id="e1c" data-value="0">&emsp;</td><td id="e2c" data-value="1">&emsp;</td>
+<td id="e3c" data-value="0">&emsp;</td><td id="e4c" data-value="0">&emsp;</td>
+<td id="e5c" data-value="0">&emsp;</td><td id="e6c" data-value="0">&emsp;</td>
+<td id="e7c" data-value="0">&emsp;</td><td id="e8c" data-value="0">&emsp;</td>
+<td id="e9c" data-value="1">&emsp;</td><td id="e10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row5" class="DataRowOddc" data-value="0">
+<th>&nbsp f &nbsp </th>
+<td id="f1c" data-value="0">&emsp;</td><td id="f2c" data-value="0">&emsp;</td>
+<td id="f3c" data-value="0">&emsp;</td><td id="f4c" data-value="0">&emsp;</td>
+<td id="f5c" data-value="0">&emsp;</td><td id="f6c" data-value="0">&emsp;</td>
+<td id="f7c" data-value="0">&emsp;</td><td id="f8c" data-value="0">&emsp;</td>
+<td id="f9c" data-value="1">&emsp;</td><td id="f10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row6" class="DataRowEvenc" data-value="0">
+<th>&nbsp g &nbsp </th>
+<td id="g1c" data-value="0">&emsp;</td><td id="g2c" data-value="1">&emsp;</td>
+<td id="g3c" data-value="1">&emsp;</td><td id="g4c" data-value="1">&emsp;</td>
+<td id="g5c" data-value="0">&emsp;</td><td id="g6c" data-value="0">&emsp;</td>
+<td id="g7c" data-value="0">&emsp;</td><td id="g8c" data-value="0">&emsp;</td>
+<td id="g9c" data-value="0">&emsp;</td><td id="g10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row7" class="DataRowOddc" data-value="0">
+<th>&nbsp h &nbsp </th>
+<td id="h1c" data-value="0">&emsp;</td><td id="h2c" data-value="0">&emsp;</td>
+<td id="h3c" data-value="0">&emsp;</td><td id="h4c" data-value="0">&emsp;</td>
+<td id="h5c" data-value="0">&emsp;</td><td id="h6c" data-value="0">&emsp;</td>
+<td id="h7c" data-value="0">&emsp;</td><td id="h8c" data-value="1">&emsp;</td>
+<td id="h9c" data-value="1">&emsp;</td><td id="h10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row8" class="DataRowEvenc" data-value="0">
+<th>&nbsp i &nbsp </th>
+<td id="i1c" data-value="0">&emsp;</td><td id="i2c" data-value="0">&emsp;</td>
+<td id="i3c" data-value="0">&emsp;</td><td id="i4c" data-value="0">&emsp;</td>
+<td id="i5c" data-value="0">&emsp;</td><td id="i6c" data-value="0">&emsp;</td>
+<td id="i7c" data-value="0">&emsp;</td><td id="i8c" data-value="0">&emsp;</td>
+<td id="i9c" data-value="0">&emsp;</td><td id="i10c" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row9" class="DataRowOddc" data-value="0">
+<th>&nbsp j &nbsp </th>
+<td id="j1c" data-value="0">&emsp;</td><td id="j2c" data-value="0">&emsp;</td>
+<td id="j3c" data-value="0">&emsp;</td><td id="j4c" data-value="0">&emsp;</td>
+<td id="j5c" data-value="0">&emsp;</td><td id="j6c" data-value="0">&emsp;</td>
+<td id="j7c" data-value="0">&emsp;</td><td id="j8c" data-value="0">&emsp;</td>
+<td id="j9c" data-value="0">&emsp;</td><td id="j10c" data-value="0">&emsp;</td>
+</tr>
+</table>
+</br>
+<input id="input1" type="text" placeholder="Type Guess Here"/> <button onClick="playerMove(); npcMove(); gameOverWin(); gameOverLoss();">Fire!</button>
+</br>
+</br>
+<b>Player Board:</b>
+<table id= tab2 border="1" align="center">
+<tr id="RowH">
+<th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+<th>6</th><th>7</th><th>8</th><th>9</th><th>10</th>
+</tr>
+<tr id="Row0" class="DataRowEven">
+<th>&nbsp a &nbsp </th>
+<td id="a1h" data-value="0">&emsp;</td><td id="a2h" data-value="0">&emsp;</td>
+<td id="a3h" data-value="0">&emsp;</td><td id="a4h" data-value="0">&emsp;</td>
+<td id="a5h" data-value="0">&emsp;</td><td id="a6h" data-value="0">&emsp;</td>
+<td id="a7h" data-value="0">&emsp;</td><td id="a8h" data-value="0">&emsp;</td>
+<td id="a9h" data-value="0">&emsp;</td><td id="a10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row1" class="DataRowOddc" data-value="0">
+<th>&nbsp b &nbsp </th>
+<td id="b1h" data-value="0">&emsp;</td><td id="b2h" data-value="0">&emsp;</td>
+<td id="b3h" data-value="0">&emsp;</td><td id="b4h" data-value="0">&emsp;</td>
+<td id="b5h" data-value="0">&emsp;</td><td id="b6h" data-value="0">&emsp;</td>
+<td id="b7h" data-value="0">&emsp;</td><td id="b8h" data-value="0">&emsp;</td>
+<td id="b9h" data-value="0">&emsp;</td><td id="b10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row2" class="DataRowEvenc" data-value="0">
+<th>&nbsp c &nbsp </th>
+<td id="c1h" data-value="0">&emsp;</td><td id="c2h" data-value="0">&emsp;</td>
+<td id="c3h" data-value="0">&emsp;</td><td id="c4h" data-value="0">&emsp;</td>
+<td id="c5h" data-value="0">&emsp;</td><td id="c6h" data-value="0">&emsp;</td>
+<td id="c7h" data-value="0">&emsp;</td><td id="c8h" data-value="0">&emsp;</td>
+<td id="c9h" data-value="0">&emsp;</td><td id="c10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row3" class="DataRowOddh" data-value="0">
+<th>&nbsp d &nbsp </th>
+<td id="d1h" data-value="0">&emsp;</td><td id="d2h" data-value="0">&emsp;</td>
+<td id="d3h" data-value="0">&emsp;</td><td id="d4h" data-value="0">&emsp;</td>
+<td id="d5h" data-value="0">&emsp;</td><td id="d6h" data-value="0">&emsp;</td>
+<td id="d7h" data-value="0">&emsp;</td><td id="d8h" data-value="0">&emsp;</td>
+<td id="d9h" data-value="0">&emsp;</td><td id="d10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row4" class="DataRowEvenh" data-value="0">
+<th>&nbsp e &nbsp </th>
+<td id="e1h" data-value="0">&emsp;</td><td id="e2h" data-value="0">&emsp;</td>
+<td id="e3h" data-value="0">&emsp;</td><td id="e4h" data-value="0">&emsp;</td>
+<td id="e5h" data-value="0">&emsp;</td><td id="e6h" data-value="0">&emsp;</td>
+<td id="e7h" data-value="0">&emsp;</td><td id="e8h" data-value="0">&emsp;</td>
+<td id="e9h" data-value="0">&emsp;</td><td id="e10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row5" class="DataRowOddh" data-value="0">
+<th>&nbsp f &nbsp </th>
+<td id="f1h" data-value="0">&emsp;</td><td id="f2h" data-value="0">&emsp;</td>
+<td id="f3h" data-value="0">&emsp;</td><td id="f4h" data-value="0">&emsp;</td>
+<td id="f5h" data-value="0">&emsp;</td><td id="f6h" data-value="0">&emsp;</td>
+<td id="f7h" data-value="0">&emsp;</td><td id="f8h" data-value="0">&emsp;</td>
+<td id="f9h" data-value="0">&emsp;</td><td id="f10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row6" class="DataRowEvenh" data-value="0">
+<th>&nbsp g &nbsp </th>
+<td id="g1h" data-value="0">&emsp;</td><td id="g2h" data-value="0">&emsp;</td>
+<td id="g3h" data-value="0">&emsp;</td><td id="g4h" data-value="0">&emsp;</td>
+<td id="g5h" data-value="0">&emsp;</td><td id="g6h" data-value="0">&emsp;</td>
+<td id="g7h" data-value="0">&emsp;</td><td id="g8h" data-value="0">&emsp;</td>
+<td id="g9h" data-value="0">&emsp;</td><td id="g10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row7" class="DataRowOddh" data-value="0">
+<th>&nbsp h &nbsp </th>
+<td id="h1h" data-value="0">&emsp;</td><td id="h2h" data-value="0">&emsp;</td>
+<td id="h3h" data-value="0">&emsp;</td><td id="h4h" data-value="0">&emsp;</td>
+<td id="h5h" data-value="0">&emsp;</td><td id="h6h" data-value="0">&emsp;</td>
+<td id="h7h" data-value="0">&emsp;</td><td id="h8h" data-value="0">&emsp;</td>
+<td id="h9h" data-value="0">&emsp;</td><td id="h10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row8" class="DataRowEvenh" data-value="0">
+<th>&nbsp i &nbsp </th>
+<td id="i1h" data-value="0">&emsp;</td><td id="i2h" data-value="0">&emsp;</td>
+<td id="i3h" data-value="0">&emsp;</td><td id="i4h" data-value="0">&emsp;</td>
+<td id="i5h" data-value="0">&emsp;</td><td id="i6h" data-value="0">&emsp;</td>
+<td id="i7h" data-value="0">&emsp;</td><td id="i8h" data-value="0">&emsp;</td>
+<td id="i9h" data-value="0">&emsp;</td><td id="i10h" data-value="0">&emsp;</td>
+</tr>
+<tr id="Row9" class="DataRowOddh" data-value="0">
+<th>&nbsp j &nbsp </th>
+<td id="j1h" data-value="0">&emsp;</td><td id="j2h" data-value="0">&emsp;</td>
+<td id="j3h" data-value="0">&emsp;</td><td id="j4h" data-value="0">&emsp;</td>
+<td id="j5h" data-value="0">&emsp;</td><td id="j6h" data-value="0">&emsp;</td>
+<td id="j7h" data-value="0">&emsp;</td><td id="j8h" data-value="0">&emsp;</td>
+<td id="j9h" data-value="0">&emsp;</td><td id="j10h" data-value="0">&emsp;</td>
+</tr>
+</table>
+</br>
+<p>Choose your starting point for each ship, and choose whether you want </br>
+the ship to be placed across or downward.<p>
+<input type="text" id="acPos" placeholder="Aircraft Carrier (5)"/>
+<select id="acDir">
+<option value="across">Across</option>
+<option value="downward">Downward</option>
+</select>
+</br>
+<input type="text" id="bPos" placeholder="Battleship (4)"/>
+<select id="bDir">
+<option value="across">Across</option>
+<option value="downward">Downward</option>
+</select>
+</br>
+<input type="text" id="sPos" placeholder="Submarine (3)"/>
+<select id="sDir">
+<option value="across">Across</option>
+<option value="downward">Downward</option>
+</select>
+</br>
+<input type="text" id="cPos" placeholder="Cruiser (3)"/>
+<select id="cDir">
+<option value="across">Across</option>
+<option value="downward">Downward</option>
+</select>
+</br>
+<input type="text" id="dPos" placeholder="Destroyer (2)"/>
+<select id="dDir">
+<option value="across">Across</option>
+<option value="downward">Downward</option>
+</select>
+</br>
+</br>
+<button onClick="placeShips();">Place Your Ships</button>
+</body>
+</html>
