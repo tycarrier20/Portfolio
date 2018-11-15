@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<title>Measurement Converter</title>
+<meta charset="utf-8" />
+<meta name="author" content="Tyler Carrier" />
+<head>
+<script type="text/javascript">
+function calcCmToIn() {
+	var cmInputBox = document.getElementById("cmInput");
+	var inOutputBox = document.getElementById("inOutput");
+	var cmInputValue = cmInputBox.value;
+	inOutputBox.value = cmInputValue / 2.54
+}
+function calcInToFt() {
+	var inInputBox = document.getElementById("inInput");
+	var ftOutputBox = document.getElementById("ftOutput");
+	var inInputValue = inInputBox.value;
+	ftOutputBox.value = inInputValue / 12
+}
+function calcFtToYd() {
+	var ftInputBox = document.getElementById("ftInput"); 
+	var ydOutputBox = document.getElementById("ydOutput");
+	var ftInputValue = ftInputBox.value;
+	ydOutputBox.value = ftInputValue / 3;
+}
+function calcYdToM() {
+	var ydInputBox = document.getElementById("ydInput");
+	var mOutputBox = document.getElementById("mOutput");
+	var ydInputValue = ydInputBox.value;
+	mOutputBox.value = ydInputValue / 1.09361;
+}
+</script>
+</head>
+<body>
+<h1>Measurement Converter</h1>
+<p>Type a value into one of the boxes, click the button, <br />
+and you will receive the equivalent measurement in a new unit.</p>
+<input type="text" id="cmInput" value="0" />cm =
+<input type="text" id="inOutput" value="0" readonly="readonly" />in
+<button onClick="calcCmToIn();">Calculate centimeters to inches</button><br />
+<br />
+<input type="text" id="inInput" value="0" />in =
+<input type="text" id="ftOutput" value="0" readonly="readonly" />ft
+<button onClick="calcInToFt();">Calculate inches to feet</button><br />
+<br />
+<input type="text" id="ftInput" value="0" />ft =
+<input type="text" id="ydOutput" value="0" readonly="readonly" />yd
+<button onClick="calcFtToYd();">Calculate feet to yards</button><br />
+<br />
+<input type="text" id="ydInput" value="0" />yd =
+<input type="text" id="mOutput" value="0" readonly="readonly" />m
+<button onClick="calcYdToM();">Calculate yards to meters</button><br />
+</body>
+</html>
