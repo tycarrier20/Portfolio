@@ -17,3 +17,7 @@
 
 <p>~Ty's Measurement Converter~
 "Convert measurements from one to the other."</p>
+
+## Additional Information:
+
+I included these projects because I feel they show a well-balanced distribution of JavaScript concepts.
