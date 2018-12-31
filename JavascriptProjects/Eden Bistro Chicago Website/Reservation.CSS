@@ -1,0 +1,129 @@
+	.backgroundimage{
+	background: url("https://image.freepik.com/free-photo/close-up-clockwise-on-black-clock-face-background-wristwatch-in-retro-style_9635-585.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position:center center;	
+	}
+	.sidenav {
+		height: 100%;
+		width:15%;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		background-color: #0b0d0f;
+		overflow-x: hidden;
+		padding-top: 0px;
+	}
+	.sidenav a {
+		padding: 6px 8px 6px 16px;
+		text-decoration: None;
+		font-size: 25px;
+		color: White;
+		display: block;
+	}
+	.sidenav a:hover {
+		color: #32CD32;
+	}
+	.main {
+		margin-left: 225px; /* Same as the width of the sidenav */
+		font-size: 28px; /* Increased text to enable scrolling */
+		padding: 0px 10px;
+	}
+	@media screen and (max-height: 450px) {
+		.sidenav {padding-top: 15px;}
+		.sidenav a {font-size: 18px;}
+	}
+	.sidenav img{
+		border: none;
+		display: block;
+		margin: 0 auto;
+		hight: 200px;
+		width: 200px;
+	}
+	.topnav {
+		background-color: #0b0d0f;
+		overflow: hidden;
+		position:absolute;
+		top:0;
+		right:0%;
+		margin: auto;
+		width: 85%;
+	}
+	.topnav a {
+		float: left;
+		color: #f1f1f1;
+		text-align: center;
+		padding: 20px 16px;
+		text-decoration: none;
+		font-size: 30px;
+	}
+	.sidenav H1 {
+		padding: 6px 8px 6px 16px;
+		text-decoration: None;
+		font-size: 25px;
+		color: White;
+		display: block;
+	}
+	.topnav a:hover {
+		color: #32CD32;
+	}
+	.topnav INPUT{
+		position:fixed;
+		right:2%;
+		top:2%;
+		height:30px;
+		width:300px;
+	}
+	.topnav BUTTON{
+		position:fixed;
+		right:1%;
+		top:2%;
+		Height:30px;
+		background-color:#32CD32;
+		padding:0;
+	}	
+	.options{
+		font-family: arial, sans-serif;
+		color:white;
+		font-size:20;
+		position:Absolute;
+		Height:300px;
+		Width:800px;
+		background:rgba(1,1,1,0.5);
+		Top:35%;
+		left:35%;
+	}
+	.name{
+		position:absolute;
+		width:18%;
+		top:20%;
+		left:20%;
+	}
+	.space{
+		position:absolute;
+		width:19%;
+		top:50%;
+		left:40%;
+	}
+	.date{
+		position:absolute;
+		width:18%;
+		top:20%;
+		Right:35%;
+	}
+	.time{
+		position:absolute;
+		right:20%;
+		top:20%;
+		width:6%;
+	}
+	.submit{
+		position:absolute;
+		left:45%;
+		bottom:10%;
+		width:6%;
+	}
+	.submit BUTTON{
+		background-color:#32CD32;
+	}

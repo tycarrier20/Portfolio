@@ -1,0 +1,168 @@
+	.backgroundimage{
+		background: url("https://lifeandthyme.com/wp-content/uploads/2015/02/mason-jar-cafe-20.jpg");
+		background-size: cover;
+		background-repeat:no-repeat;
+		background-position:center center;	
+		background-color:Black;
+	}
+	.sidenav {
+		height: 100%;
+		width:15%;
+		position: fixed;
+		z-index:5;
+		top: 0;
+		left: 0;
+		background-color: #0b0d0f;
+		overflow-x: hidden;
+		padding-top: 0px;
+	}
+	.sidenav a {
+		padding: 6px 8px 6px 16px;
+		text-decoration: None;
+		font-size: 25px;
+		color: White;
+		display: block;
+	}
+	.sidenav H1 {
+	padding: 6px 8px 6px 16px;
+	text-decoration: None;
+	font-size: 25px;
+	color: White;
+	display: block;
+}
+	.sidenav a:hover {
+		color: #32CD32;
+	}
+	.sidenav img{
+		border: none;
+		display: block;
+		margin: 0 auto;
+		hight: 200px;
+		width: 200px;
+	}
+	.topnav {
+		background-color: #0b0d0f;
+		overflow: hidden;
+		position:fixed;
+		top:0;
+		right:0%;
+		margin: auto;
+		height:7%;
+		width: 85%;
+		z-index:5;
+	}
+	.topnav a {
+		float: left;
+		color: #f1f1f1;
+		text-align: center;
+		padding: 20px 16px;
+		text-decoration: none;
+		font-size: 30px;
+	}
+	.topnav a:hover {
+		color: #32CD32;
+	}
+	#searchArea{
+		display:inline;
+		float:right;
+		height:100%;
+		background-color:none;
+	}
+	#myInput{
+		position:relative;
+		right:5%;
+		top:25%;
+		height:30px;
+		width:300px;
+	}
+	#button{
+		position:relative;
+		right:4%;
+		top:25%;
+		Height:30px;
+		background-color:#32CD32;
+		padding:0;
+	}	
+	Menus{
+		position:relative;
+		left:100;
+		top:100;
+		background-color:Red;
+	}
+	.breakfast {
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:20%;
+		top:15%;
+		background-color:rgba(1,1,1,0.5);
+		color:white;
+	}
+	.lunch {
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:60%;
+		top:15%;
+		background-color:rgba(1,1,1,0.5);
+		color:white;
+	}
+	.dinner {
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:20%;
+		top:51%;
+		bottom:20px;
+		background-color:rgba(1,1,1,0.5);
+		color:white;
+	}
+	.Sides {
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:60%;
+		top:70%;
+		bottom:20px;
+		background-color:rgba(1,1,1,0.5);
+		color:white;
+	}
+	.Drinks {
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:20%;
+		top:100%;
+		bottom:20px;
+		background-color:rgba(1,1,1,0.5);
+		color:white;
+	}
+	 .extras{
+		position:absolute;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 25%;
+		left:60%;
+		top:110%;
+		bottom:20px;
+		background-color:rgba(1,1,1,0.5);
+		color:white;		
+	}
+	th{
+		font-size:30;
+		font-family:helvetica;
+	}
+	td, th {
+		border: 1px solid #dddddd;
+		text-align: left;
+		padding: 8px;
+	}
+
+	tr:nth-child(even) {
+		background-color:#0b0d0f;
+	}

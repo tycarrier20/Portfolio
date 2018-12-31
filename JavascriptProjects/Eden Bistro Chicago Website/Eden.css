@@ -1,0 +1,72 @@
+.backgroundimage{
+	background: url("https://static1.squarespace.com/static/57d0a4022e69cf8d9a5f7baa/t/57d0a79dff7c5003ba80006e/1473292196118/IMG_0022.JPG?format=1500w");
+	background-size: cover;
+	background-repeat:no-repeat;
+	background-position:center center;
+	z-index:0;
+}
+.sidenav {
+	height: 100%;
+	width:15%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #0b0d0f;
+	overflow-x: hidden;
+	padding-top: 0px;
+}
+.sidenav a {
+	/*padding: 6px 8px 6px 6px;*/
+	text-decoration: None;
+	font-size: 1.7em;
+	color: White;
+	display: block;
+}
+.sidenav a:hover {
+	color: #32CD32;
+}
+.main {
+	margin-left: 225px; /* Same as the width of the sidenav */
+	font-size: 28px; /* Increased text to enable scrolling */
+	padding: 0px 10px;
+}
+@media screen and (max-height: 450px) {
+	.sidenav {padding-top: 15px;}
+	.sidenav a {font-size: 18px;}
+}
+.sidenav img {
+	border: none;
+	display: block;
+	margin: 0 auto;
+	hight: 200px;
+	width: 200px;
+}
+.sidenavSpecials{
+	color:white;
+	font-family: arial, sans-serif;	
+	font-size: 25px;
+	color:#32CD32;
+	border-width: thick;
+}
+.homeHeader {
+	position: absolute;
+	margin: auto;
+	width: 100%;
+	left:0;
+	top:300;
+	Height: 350px;
+	background:rgba(1,1,1,0.5);
+}
+h2 {
+	font-family: 'Pontano Sans', sans-serif;
+	color: #29AD4D;
+	text-align:center;
+	font-size:80;
+}
+h3 {
+	font-family: 'Pontano Sans', sans-serif;
+	color: #29AD4D;
+	text-align:center;
+	font-size:40;
+}

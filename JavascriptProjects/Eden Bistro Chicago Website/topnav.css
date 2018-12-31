@@ -1,0 +1,83 @@
+.topnav {
+	z-index:5;
+	background-color:#0b0d0f;
+	overflow: hidden;
+	position:fixed;
+	top:0;
+	right:0%;
+	height:8%;
+	margin: auto;
+	width: 85%;
+}
+.topnav a {
+	float: left;
+	color: #f1f1f1;
+	text-align: center;
+	padding: 20px 16px;
+	text-decoration: none;
+	font-size: 30px;
+}
+.topnav a:hover {
+	color: #32CD32;
+}
+#searchArea {
+	display:inline;
+	float:right;
+	height:100%;
+	background-color:none;
+}
+#myInput {
+	position:relative;
+	right:5%;
+	top:25%;
+	height:30px;
+	width:300px;
+}
+#button {
+	position:relative;
+	right:4%;
+	top:25%;
+	Height:30px;
+	background-color:#32CD32;
+	padding:0;
+}
+.searchPopup{
+	position:fixed;
+	top:9%;
+	right:8%;
+	width:8%;
+	display: inline;
+	z-index:6;
+	float:right;
+}
+#myUL {
+	/* Remove default list styling */
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+	display: none;
+	z-index:6;
+	height:50%;
+}
+#myUL > li{
+	height:50px;
+}
+#myUL > li a {
+	border: 1px solid #ddd; /* Add a border to all links */
+	margin-top: -1px; /* Prevent double borders */
+	background-color: #f6f6f6; /* Grey background color */
+	padding: 12px; /* Add some padding */
+	text-decoration: none; /* Remove default text underline */
+	font-size: 16px; /* Increase font-size */
+	color: black; /* Add a black text color */
+	display: block; /* Make it into a block element to fill the whole list */
+	list-style-type: none;
+	width: 100%; /* Full-width */
+	z-index:6;
+}
+
+#myUL li a:hover:not(.header) {
+	background-color: #eee; /* Add a hover effect to all links, except for headers */
+	z-index:6;
+
+}
