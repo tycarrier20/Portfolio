@@ -1,5 +1,10 @@
 ## Javascript Project Descriptions
 
+<p>~Eden Bistro Chicago Website~
+ "This is a website that two friends and I created as a project for school. It is a website for a 
+  fictional restaurant named 'Eden Bistro' based out of Chicago. This website has a front end interface
+  as well as a backend including a mySQL database."
+
 <p>~Merry Canvas Data Program~
 "Load the data provided in the folder and you will be presented with a standard line graph."</p>
 
