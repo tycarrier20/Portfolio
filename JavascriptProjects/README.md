@@ -1,9 +1,16 @@
 ## Javascript Project Descriptions
 
+<p>T-Scope Search Engine
+ "Fun project that I made which presents my own front end to a Google Search."</p>
+
+<p>~CorrelationEquationCalculator~
+ "Calculator designed to present the correlation between two sets of data points. I created this to have
+ a little fun while memorizing the mathematical steps of finding a correlation."</p>
+
 <p>~Eden Bistro Chicago Website~
  "This is a website that two friends and I created as a project for school. It is a website for a 
   fictional restaurant named 'Eden Bistro' based out of Chicago. This website has a front end interface
-  as well as a backend including a mySQL database."
+  as well as a backend including a mySQL database."</p>
 
 <p>~Merry Canvas Data Program~
 "Load the data provided in the folder and you will be presented with a standard line graph."</p>
