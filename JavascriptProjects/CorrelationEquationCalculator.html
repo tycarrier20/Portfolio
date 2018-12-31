@@ -1,0 +1,114 @@
+<html>
+Do your factors correlate? Fill out the following fields to find out!</br></br>
+<label>First list of numbers (separate by comma):</label>
+<input id="list1" placeholder="ex. 1, 2, 3, 4, 5">
+</br></br>
+<label>Second list of numbers (separate by comma):</label>
+<input id="list2" placeholder="ex. 1, 2, 3, 4, 5"></br></br>
+<button onclick="calculateCorrelation()">Determine Correlation</button>
+</br>
+<script type="text/javascript">
+function calculateCorrelation() {
+	// ---calculations for set 1---
+	var inputOne = document.getElementById("list1").value;
+	var myArray1 = inputOne.split(", ");
+	
+	for(var i=0; i<myArray1.length; i++) { 
+	myArray1[i] = +myArray1[i];
+}
+
+	// find the mean
+	var sum1 = 0;
+	for(var i = 0; i < myArray1.length; i++){
+    sum1 += parseInt(myArray1[i], 10);
+}
+	var mean1 = sum1/myArray1.length;
+	
+	// find i - mean	
+	for(var i=myArray1.length; i>=0; i--) {
+	myArray1[i] = (myArray1[i] - mean1);
+}
+	myArray1.splice(-1,1);
+	
+	// find (i - mean) squared
+	newMyArray1= [];
+
+	for (var i = 0; i < myArray1.length; i++) {
+		newMyArray1.push(myArray1[i] * myArray1[i]);
+}
+	
+	// find the sum of new array
+	var newSum1 = 0;
+	for(var i = 0; i < newMyArray1.length; i++){
+    newSum1 += parseInt(newMyArray1[i], 10);
+}
+
+	// divide sum by i - number of elements in set
+	brandNewSum1 = newSum1 / (newMyArray1.length - 1);
+	
+	// take the sqrt of sum which will return standard deviation for set 2
+	standardDeviation1 = Math.sqrt(brandNewSum1);
+	
+	// ---calculations for set 2---
+	var inputTwo = document.getElementById("list2").value;
+	var myArray2 = inputTwo.split(", ");
+
+	for(var i=0; i<myArray2.length; i++) { 
+	myArray2[i] = +myArray2[i];
+}
+
+	// find the mean
+	var sum2 = 0;
+	for(var i = 0; i < myArray2.length; i++){
+    sum2 += parseInt(myArray2[i], 10);
+}
+	var mean2 = sum2/myArray1.length;
+	
+	// find i - mean	
+	for(var i=myArray2.length; i>=0; i--) {
+	myArray2[i] = (myArray2[i] - mean2);
+}
+	myArray2.splice(-1,1);
+	
+	// find(i - mean) squared
+	newMyArray2= [];
+
+	for (var i = 0; i < myArray2.length; i++) {
+		newMyArray2.push(myArray2[i] * myArray2[i]);
+	}
+
+	// find the sum of new array
+	var newSum2 = 0;
+	for(var i = 0; i < newMyArray2.length; i++){
+    newSum2 += parseInt(newMyArray2[i], 10);
+}
+
+	// divide sum by i - number of elements in set
+	brandNewSum2 = newSum2 / (newMyArray2.length - 1);
+
+	// take the sqrt of which will return standard deviation for set 1
+	standardDeviation2 = Math.sqrt(brandNewSum2);
+
+	
+	// ---final calculations---
+	
+	// find myArray1 individual elements times myArray2 individual elements
+	cumArray= [];
+	
+	for (var i = 0; i < myArray1.length; i++) {
+	cumArray[i] = (myArray1[i]*myArray2[i]);
+}
+
+	// find sum of myArray1 times myArray2 values
+	var finalArraySum = 0;
+	for(var i = 0; i < cumArray.length; i++){
+    finalArraySum += parseInt(cumArray[i], 10);
+}
+	
+	// find correlation
+	correlation = finalArraySum/((myArray1.length-1)*standardDeviation1*standardDeviation2);
+	
+	alert("The Correlation between the two sets is "+correlation+"!");
+}
+</script>
+</html>
