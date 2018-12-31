@@ -1,6 +1,6 @@
 ## Javascript Project Descriptions
 
-<p>T-Scope Search Engine
+<p>~T-Scope Search Engine~
  "Fun project that I made which presents my own front end to a Google Search."</p>
 
 <p>~CorrelationEquationCalculator~
